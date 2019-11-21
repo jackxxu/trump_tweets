@@ -1,10 +1,10 @@
 require_relative 'line'
 
 class Block
-  attr_reader :security_nm, :lines
+  attr_reader :name, :lines
 
-  def initialize(security_nm)
-    @security_nm = security_nm
+  def initialize(name)
+    @name = name
     @lines = []
   end
 
@@ -13,7 +13,7 @@ class Block
   end
 
   def monthly?
-    !@lines[0].start_with?(/\d/i)
+    !@lines[0].value(:time).start_with?(/\d/i)
   end
 
   def front_4_mos

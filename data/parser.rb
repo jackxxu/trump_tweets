@@ -8,9 +8,8 @@ LINES_TO_SKIP = ['TOTAL', 'END OF REPORT', '---- DAILY ---', 'STRIKE     OPEN']
 securities = []
 
 File.open("data.csv", "w") do |output|
-  output.puts 'file_nm,strike_dt,open,high,low,last,settled,change,vol,prev_settled,prev_vol,pre_int'
-  # input_lines = File.readlines(file_nm)  
-  # security_lines = input_lines.each_with_index.select { |row, index| !row.include?('  ') }.map(&:last)
+  output.puts (['file_nm', 'security'] + Line::RANGES.keys).join(',')
+
   File.readlines(file_nm).drop(1).each do |line|
     line = line.rstrip
     next if LINES_TO_SKIP.any? {|part| line.include?(part)}
@@ -20,7 +19,13 @@ File.open("data.csv", "w") do |output|
       securities.last << line
     end
   end
-end
 
-binding.pry
-securities
+  securities
+    .select(&:monthly?)
+    .each do |security|
+    security.front_4_mos.each do |line|
+      result = [file_nm, security.name] + Line::RANGES.keys.map {|key| line.value(key) }
+      output.puts result.join(',')
+    end
+  end
+end
