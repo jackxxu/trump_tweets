@@ -4,7 +4,7 @@ class Block
   attr_reader :name, :lines
 
   def initialize(name)
-    @name = name
+    @name = name.gsub(',', '')
     @lines = []
   end
 
