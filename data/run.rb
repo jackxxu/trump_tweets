@@ -8,10 +8,8 @@ rates = TnoteRates.new
 Dir.glob("**/*/*.txt")
   .map { |path| DataFile.new(path) }
   .filter { |f| !f.tnote? }
-  .map { |f| f.commodity }
-  .uniq
-  .sort
-  .each { |x| puts x }  
-  # .map {|f| "#{f.commodity}-#{f.dt.to_s}" }
+  .each {|f| puts f.blocks }
+  # .map { |f| f.blocks }
+  # .uniq
   # .sort
-  # .each {|x| puts x}
+  # .each { |x| puts x }  
