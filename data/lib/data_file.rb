@@ -14,7 +14,7 @@ class DataFile
   end
 
   def commodity
-    @fn_parts[1]&.gsub('_', '')&.downcase
+    @fn_parts[1]&.gsub('_', '')&.downcase || 'ags_settlement'
   end
 
   def dt
