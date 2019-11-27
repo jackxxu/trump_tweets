@@ -29,7 +29,7 @@ class DataFile
       .readlines(@path)
       .map    { |line| line.strip }
       .reject { |line| line.empty? }
-      .reject { |line| LINES_TO_SKIP.any? {|part| line.include?(part)} }
+      .reject { |line| LINES_TO_SKIP.any? { |part| line.include?(part) } }
       .reject { |line| line =~ DATALINE_REG }
   end
 end
