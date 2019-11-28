@@ -1,6 +1,7 @@
 class Line
   RANGES = {
     time:         0..5,
+    price:        0..5,
     open:         6..14,
     high:         16..24,
     low:          26..34,
@@ -29,12 +30,20 @@ class Line
     actual_value(:vol, :prev_vol)
   end
 
+  def strike
+    value(:price)
+  end
+
+  def dt
+    value(:time)
+  end
+
   private
 
     def actual_value(main_field, unch_field)
       value(main_field).tap do |val|
         val = value(unch_field) if val == 'UNCH'
-      end            
+      end
     end
 
     def value(key)
