@@ -16,6 +16,7 @@ Dir["./lib/*.rb"].each {|file| require file }
 OPTION_ATTRS = %i{dt commodity type name month_remaining volatility volume strike line_open_interest future_open_interest tnote_rate}
 
 File.open('output.csv', 'w') do |output|
+  output.puts OPTION_ATTRS.join(',')
   Dir.glob('market/**/Soybeans_*.txt')
     .map { |path| CMEGroup::DataFile.new(path) }
     .reject { |f| f.tnote? }
