@@ -1,0 +1,3 @@
+class Future < Block
+
+end

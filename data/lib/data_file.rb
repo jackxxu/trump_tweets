@@ -25,11 +25,25 @@ class DataFile
   end
 
   def blocks
-    File
-      .readlines(@path)
-      .map    { |line| line.strip }
-      .reject { |line| line.empty? }
-      .reject { |line| LINES_TO_SKIP.any? { |part| line.include?(part) } }
-      .reject { |line| line =~ DATALINE_REG }
+    [].tap do |results|
+      File
+        .readlines(@path)
+        .map    { |line| line.strip }
+        .reject { |line| line.empty? }
+        .reject { |line| LINES_TO_SKIP.any? { |part| line.include?(part) } }
+        .each do |line|
+          ln = line.downcase
+          if ln.include?('future')
+            results << Future.new(line)
+          elsif ln.include?('put')
+            results << Put.new(line)
+          elsif ln.include?('call')
+            results << Call.new(line)
+          else
+            results.last << line
+          end
+        end
+    end
+      # .reject { |line| line =~ DATALINE_REG }
   end
 end
