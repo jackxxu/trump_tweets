@@ -33,5 +33,12 @@ module CMEGroup
         .relevant_future_keys
         .find_index {|x| x == month }
     end
+
+    def volatility
+      lines
+        .sort_by {|x| (x.strike - future_line.settled).abs }
+        .fetch(0)
+        .volatility
+    end
   end
 end

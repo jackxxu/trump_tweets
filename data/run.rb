@@ -18,5 +18,5 @@ Dir.glob('market/txt_data_7-31-19/Soybeans_19_7_2019_ags_settlements.txt')
   .reject { |f| f.tnote? }
   .each { |f| puts "#{f.commodity}-#{f.dt}" }
   .each do |f|
-    puts f.options[0].lines[0].volatility
+    puts f.options.map {|x| "#{x.name}-#{x.volatility}"}
   end

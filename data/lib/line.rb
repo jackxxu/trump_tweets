@@ -1,6 +1,7 @@
 require 'penfold'
 
 module CMEGroup
+  attr_reader :str
   class Line
     RANGES = {
       time:         0..5,
