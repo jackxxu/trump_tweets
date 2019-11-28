@@ -41,10 +41,8 @@ class DataFile
           ln = line.downcase
           if ln.include?('future')
             results << Future.new(line)
-          elsif ln.include?('put')
-            results << Put.new(line)
-          elsif ln.include?('call')
-            results << Call.new(line)
+          elsif ln.include?('put') || ln.include?('call')
+            results << Option.new(line, ln.include?('put') ? :put : :call )
           else
             results.last << line
           end

@@ -1,3 +1,0 @@
-class Call < Block
-
-end

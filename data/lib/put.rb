@@ -1,3 +1,0 @@
-class Put < Block
-
-end

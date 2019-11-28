@@ -12,11 +12,7 @@ class Block
     @lines << Line.new(line)
   end
 
-  def monthly?
-    !@lines[0].value(:time).start_with?(/\d/i)
-  end
-
-  def front_4_mos
-    @lines[0, 4]
-  end
+  # def monthly?
+  #   !@lines[0].value(:time).start_with?(/\d/i)
+  # end
 end
