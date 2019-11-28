@@ -53,6 +53,19 @@ module CMEGroup
       lines.sum(&:open_interest)
     end
 
+    def volume
+      future_line.volume
+    end
+
+    def strike
+      future_line.strike
+    end
+
+    def open_interests
+      lines
+        .filter {|line| line.open_interest != 0}
+    end
+
     def volatility
       lines
         .sort_by {|x| (x.strike - future_line.settled).abs }
