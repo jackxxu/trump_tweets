@@ -43,6 +43,10 @@ class Line
     month_remaining * 30
   end
 
+  def open_interest
+    value(:pre_int).to_f
+  end
+
   private
 
     def month_remaining

@@ -17,4 +17,7 @@ Dir.glob('market/txt_data_7-31-19/Soybeans_19_7_2019_ags_settlements.txt')
   .map { |path| DataFile.new(path) }
   .reject { |f| f.tnote? }
   .each { |f| puts "#{f.commodity}-#{f.dt}" }
-  .each { |f| puts f.options.map(&:name)  }
+  .each do |f|
+    binding.pry
+    puts f.options.map(&:name)
+  end
