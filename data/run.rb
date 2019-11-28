@@ -15,11 +15,13 @@ Dir["./lib/*.rb"].each {|file| require file }
 
 OPTION_ATTRS = %i{dt commodity type name month_remaining volatility volume strike line_open_interest future_open_interest tnote_rate}
 
-Dir.glob('market/txt_data_7-31-19/Soybeans_*.txt')
-  .map { |path| CMEGroup::DataFile.new(path) }
-  .reject { |f| f.tnote? }
-  .each { |f| puts "#{f.commodity}-#{f.dt}" }
-  .flat_map(&:options)
-  .each do |option|
-    puts OPTION_ATTRS.map {|key| option.send(key)}.join(',')
-  end
+File.open('output.csv', 'w') do |output|
+  Dir.glob('market/**/Soybeans_*.txt')
+    .map { |path| CMEGroup::DataFile.new(path) }
+    .reject { |f| f.tnote? }
+    .each { |f| puts "#{f.commodity}-#{f.dt}" }
+    .flat_map(&:options)
+    .each do |option|
+      output.puts OPTION_ATTRS.map {|key| option.send(key)}.join(',')
+    end
+end
