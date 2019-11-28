@@ -61,14 +61,15 @@ module CMEGroup
         @block.month_remaining*30/365.0,
         settled
       )
+    rescue
+      0
     end
 
     private
 
       def actual_value(main_field, unch_field)
-        value(main_field).tap do |val|
-          val = value(unch_field) if val == 'UNCH'
-        end
+        val = value(main_field)
+        [val, value(:change)].include?('UNCH') ? value(unch_field) : val
       end
 
       def value(key)
