@@ -27,5 +27,11 @@ module CMEGroup
         .relevant_future_keys
         .find {|key| name.include?(key)}
     end
+
+    def month_remaining
+      file
+        .relevant_future_keys
+        .find_index {|x| x == month }
+    end
   end
 end

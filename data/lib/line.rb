@@ -1,3 +1,5 @@
+require 'penfold'
+
 module CMEGroup
   class Line
     RANGES = {
@@ -21,7 +23,7 @@ module CMEGroup
     end
 
     def settled
-      actual_value(:settled, :prev_settled)
+      actual_value(:settled, :prev_settled).to_f
     end
 
     def open_interest
@@ -33,7 +35,7 @@ module CMEGroup
     end
 
     def strike
-      value(:price)
+      value(:price).to_f/10 # it seems that strike price is multipled by 10
     end
 
     def dt
@@ -48,11 +50,19 @@ module CMEGroup
       value(:pre_int).to_f
     end
 
-    private
+    def volatility
+      risk_free_rate = TnoteRates.for(@block.file.dt.to_s)
+      BlackScholes.option_implied_volatility(
+        @block.type == :call,
+        @block.future_line.settled,
+        strike,
+        risk_free_rate/100.0,
+        @block.month_remaining*30/365.0,
+        settled
+      )
+    end
 
-      def month_remaining
-        @block.file.relevant_future_keys.find_index {|x| x == dt }
-      end
+    private
 
       def actual_value(main_field, unch_field)
         value(main_field).tap do |val|

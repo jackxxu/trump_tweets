@@ -3,7 +3,7 @@ require 'date'
 
 Dir["./lib/*.rb"].each {|file| require file }
 
-rates = CMEGroup::TnoteRates.new
+# rates = CMEGroup::TnoteRates.new
 
 # Dir.glob("**/*/*.txt")
 #   .map { |path| DataFile.new(path) }
@@ -18,6 +18,5 @@ Dir.glob('market/txt_data_7-31-19/Soybeans_19_7_2019_ags_settlements.txt')
   .reject { |f| f.tnote? }
   .each { |f| puts "#{f.commodity}-#{f.dt}" }
   .each do |f|
-    binding.pry
-    puts f.options.map(&:name)
+    puts f.options[0].lines[0].volatility
   end

@@ -2,13 +2,12 @@ require 'csv'
 
 module CMEGroup
   class TnoteRates
-    attr_reader :rates
-    def initialize
-      @rates = Hash[File.read('market/10y_tnote.csv').scan(/(.+?),(.+)/)]
-    end
+    @rates = Hash[File.read('market/10y_tnote.csv').scan(/(.+?),(.+)/)]
 
-    def for(date)
-      @rates[date]
+    class << self
+      def for(date)
+        @rates[date]&.to_f
+      end
     end
   end
 end
