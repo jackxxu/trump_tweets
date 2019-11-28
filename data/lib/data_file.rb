@@ -29,7 +29,7 @@ class DataFile
     @fn_parts[1]&.gsub('_', '')&.downcase || 'ags_settlement'
   end
 
-  def blocks
+  def options
     current = nil
     File
       .readlines(@path)
@@ -51,7 +51,7 @@ class DataFile
             current = nil
           end
         else
-          current << line if current
+          current << Line.new(line, current) if current
         end
       end
     @options

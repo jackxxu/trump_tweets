@@ -10,6 +10,6 @@ class Block
   end
 
   def << line
-    @lines << Line.new(line)
+    @lines << line
   end
 end

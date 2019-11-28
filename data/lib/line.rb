@@ -14,8 +14,9 @@ class Line
     pre_int:      99..109,
   }
 
-  def initialize(str)
+  def initialize(str, block)
     @str = str
+    @block = block
   end
 
   def settled
@@ -38,7 +39,15 @@ class Line
     value(:time)
   end
 
+  def days_remaining
+    month_remaining * 30
+  end
+
   private
+
+    def month_remaining
+      @block.file.relevant_future_keys.find_index {|x| x == dt }
+    end
 
     def actual_value(main_field, unch_field)
       value(main_field).tap do |val|
