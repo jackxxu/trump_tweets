@@ -22,6 +22,13 @@ module CMEGroup
         .fetch(:future_name)
     end
 
+    def commodity
+      ln = name.downcase
+      TYPES
+        .find { |h| ln.include?(h[:name]) }
+        .fetch(:name)
+    end
+
     def month
       @file
         .relevant_future_keys
@@ -32,6 +39,18 @@ module CMEGroup
       file
         .relevant_future_keys
         .find_index {|x| x == month }
+    end
+
+    def dt
+      @file.dt
+    end
+
+    def future_open_interest
+      future_line.open_interest
+    end
+
+    def line_open_interest
+      lines.sum(&:open_interest)
     end
 
     def volatility
