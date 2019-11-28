@@ -24,6 +24,12 @@ class DataFile
     Date.new(@fn_parts[4].to_i, @fn_parts[3].to_i, @fn_parts[2].to_i)
   end
 
+  def relevant_future_keys
+    (0..4)
+      .map {|i| dt >> i}
+      .map {|x| "#{MONTHS[x.month-1]}#{x.year.to_s[2,2]}" }
+  end
+
   def blocks
     [].tap do |results|
       File
