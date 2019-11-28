@@ -16,7 +16,7 @@ class DataFile
     @dt = Date.new(@fn_parts[4].to_i, @fn_parts[3].to_i, @fn_parts[2].to_i)
     @futures, @options = [], []
     @relevant_future_keys =
-      (0..4)
+      (0..6)
         .map {|i| dt >> i}
         .map {|x| "#{MONTHS[x.month-1]}#{x.year.to_s[2,2]}" }
   end
@@ -44,11 +44,14 @@ class DataFile
         elsif ln.include?('put') || ln.include?('call')
           option = Option.new(self, line, ln.include?('put') ? :put : :call )
           future = @futures.find {|f| f.name == option.future_name}
-          option.future_line = future.line_for(option.month)
-          @options << option
-          current = @options.last
+          if option.future_line = future.line_for(option.month)
+            @options << option
+            current = @options.last
+          else
+            current = nil
+          end
         else
-          current << line
+          current << line if current
         end
       end
     @options
