@@ -61,6 +61,10 @@ module CMEGroup
       future_line.strike
     end
 
+    def tnote_rate
+      TnoteRates.for(@file.dt.to_s)
+    end
+
     def open_interests
       lines
         .filter {|line| line.open_interest != 0}

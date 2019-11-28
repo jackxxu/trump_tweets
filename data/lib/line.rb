@@ -57,7 +57,7 @@ module CMEGroup
         @block.type == :call,
         @block.future_line.settled,
         strike,
-        risk_free_rate/100.0,
+        @block.tnote_rate/100.0,
         @block.month_remaining*30/365.0,
         settled
       )

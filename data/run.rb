@@ -13,7 +13,7 @@ Dir["./lib/*.rb"].each {|file| require file }
 #   .sort
 #   .each { |x| puts x }
 
-OPTION_ATTRS = %i{dt commodity type name month_remaining volatility volume strike line_open_interest future_open_interest}
+OPTION_ATTRS = %i{dt commodity type name month_remaining volatility volume strike line_open_interest future_open_interest tnote_rate}
 
 Dir.glob('market/txt_data_7-31-19/Soybeans_19_7_2019_ags_settlements.txt')
   .map { |path| CMEGroup::DataFile.new(path) }
