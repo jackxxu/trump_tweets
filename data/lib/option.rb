@@ -7,7 +7,8 @@ module CMEGroup
       { name: 'soybean oil', type: :soybean_oil },
       { name: 'soybean crush', type: :soybean_crush },
       { name: 'soybean meal', type: :soybean_meal },
-      { name: 'soybean', type: :soybeans, future_name: 'S Soybean Futures' },
+      { name: 'soybeans option', type: :soybeans, future_name: 'S Soybean Futures' },
+      { name: 'soybean option', type: :soybeans, future_name: 'S Soybean Futures' },
     ]
 
     def initialize(file, name, type)
@@ -20,13 +21,15 @@ module CMEGroup
       TYPES
         .find { |h| ln.include?(h[:name]) }
         .fetch(:future_name)
+    rescue
+      binding.pry
     end
 
     def commodity
       ln = name.downcase
       TYPES
         .find { |h| ln.include?(h[:name]) }
-        .fetch(:name)
+        .fetch(:type)
     end
 
     def month

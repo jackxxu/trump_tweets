@@ -1,6 +1,6 @@
 module CMEGroup
   class DataFile
-    attr_reader :file_name, :dt, :relevant_future_keys
+    attr_reader :file_name, :dt, :relevant_future_keys, :path
 
     DATA_FN_FORMAT = /^([^_]*_)?(\d{1,2})_(\d{1,2})_(\d{4})/
     LINES_TO_SKIP = ['TOTAL', 'END OF REPORT', '---- DAILY ---', 'STRIKE     OPEN']
