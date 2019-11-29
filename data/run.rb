@@ -13,7 +13,7 @@ Dir["./lib/*.rb"].each {|file| require file }
 #   .sort
 #   .each { |x| puts x }
 
-OPTION_ATTRS = %i{dt commodity type name month_remaining volatility volume strike line_open_interest future_open_interest tnote_rate}
+OPTION_ATTRS = %i{dt commodity type name month_remaining volatility volume underlying_price line_open_interest future_open_interest tnote_rate}
 
 File.open('output.csv', 'w') do |output|
   output.puts OPTION_ATTRS.join(',')

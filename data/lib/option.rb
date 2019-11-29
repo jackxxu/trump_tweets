@@ -57,8 +57,8 @@ module CMEGroup
       future_line.volume
     end
 
-    def strike
-      future_line.strike
+    def underlying_price
+      future_line.settled
     end
 
     def tnote_rate

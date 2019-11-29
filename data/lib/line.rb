@@ -1,8 +1,9 @@
 require 'penfold'
 
 module CMEGroup
-  attr_reader :str
   class Line
+    attr_reader :str
+
     RANGES = {
       time:         0..5,
       price:        0..5,
