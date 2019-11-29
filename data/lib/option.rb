@@ -5,10 +5,12 @@ module CMEGroup
 
     TYPES = [
       { name: 'soybean oil', type: :soybean_oil },
-      { name: 'soybean crush', type: :soybean_crush },
       { name: 'soybean meal', type: :soybean_meal },
       { name: 'soybeans option', type: :soybeans, future_name: 'S Soybean Futures' },
       { name: 'soybean option', type: :soybeans, future_name: 'S Soybean Futures' },
+      { name: 'soybean crush', type: :soybean_crush, future_name: 'BCX SOYBEAN CRUSH' },
+      { name: 'corn option', type: :corn, future_name: 'C Corn Futures' },
+      { name: 'wheat option', type: :wheat, future_name: 'W Wheat Futures' },
     ]
 
     def initialize(file, name, type)

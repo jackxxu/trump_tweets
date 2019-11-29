@@ -17,7 +17,7 @@ OPTION_ATTRS = %i{dt commodity type name month_remaining volatility volume under
 
 File.open('output.csv', 'w') do |output|
   output.puts OPTION_ATTRS.join(',')
-  Dir.glob('market/**/Soybeans_*.txt')
+  Dir.glob('market/**/*.txt')
     .map { |path| CMEGroup::DataFile.new(path) }
     .reject { |f| f.tnote? }
     .each { |f| puts "#{f.commodity}-#{f.dt}" }

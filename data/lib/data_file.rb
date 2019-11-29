@@ -6,9 +6,6 @@ module CMEGroup
     LINES_TO_SKIP = ['TOTAL', 'END OF REPORT', '---- DAILY ---', 'STRIKE     OPEN']
     MONTHS = %w[JAN FEB MAR APR MAY JUN JLY AUG SEP OCT NOV DEC]
     DATALINE_REG = Regexp.new ('(^' + (MONTHS + ['\d{4}', '\s{4}']).join('|') + ')')
-    FUTURE_NAMES = {
-      soybean: 'S Soybean Futures'
-    }
 
     def initialize(path)
       @path = path
