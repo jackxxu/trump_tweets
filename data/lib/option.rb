@@ -6,9 +6,9 @@ module CMEGroup
     TYPES = [
       { name: 'soybean oil', type: :soybean_oil, future_name: 'BO Soybean Oil Futures' },
       { name: 'soybean meal', type: :soybean_meal, future_name: 'SM Soybean Meal Futures' },
-      { name: 'soybean', type: :soybeans, future_name: 'S Soybean Futures' },
-      { name: 'soy bean', type: :soybeans, future_name: 'S Soybean Futures' },
       { name: 'soybean crush', type: :soybean_crush, future_name: 'BCX SOYBEAN CRUSH' },
+      { name: 'soy bean', type: :soybeans, future_name: 'S Soybean Futures' },
+      { name: 'soybean', type: :soybeans, future_name: 'S Soybean Futures' },
       { name: 'corn', type: :corn, future_name: 'C Corn Futures' },
       { name: 'wheat', type: :wheat, future_name: 'W Wheat Futures' },
       { name: 'wh ', type: :wheat, future_name: 'W Wheat Futures' },
