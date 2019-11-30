@@ -6,6 +6,7 @@ module CMEGroup
     LINES_TO_SKIP = ['TOTAL', 'END OF REPORT', '---- DAILY ---', 'STRIKE     OPEN']
     MONTHS = %w[JAN FEB MAR APR MAY JUN JLY AUG SEP OCT NOV DEC]
     DATALINE_REG = Regexp.new ('(^' + (MONTHS + ['\d{4}', '\s{4}']).join('|') + ')')
+    OPTIONS_REG = /(PUT|CALL)/i
 
     def initialize(path)
       @path = path
@@ -35,12 +36,9 @@ module CMEGroup
         .reject { |line| line.empty? }
         .reject { |line| LINES_TO_SKIP.any? { |part| line.include?(part) } }
         .each do |line|
-          ln = line.downcase
-          if ln.include?('future')
-            @futures << Future.new(self, line)
-            current = @futures.last
-          elsif ln.include?('put') || ln.include?('call')
-            option = Option.new(self, line, ln.include?('put') ? :put : :call )
+          if line =~ OPTIONS_REG
+            # option line
+            option = Option.new(self, line)
             future = @futures.find {|f| f.name == option.future_name}
             if option.future_line = future.line_for(option.month)
               @options << option
@@ -48,8 +46,14 @@ module CMEGroup
             else
               current = nil
             end
-          else
+          elsif line =~ DATALINE_REG
+            # data line
             current << Line.new(line, current) if current
+          else
+            # future line, as it is the most unpredictable
+            puts line
+            @futures << Future.new(self, line)
+            current = @futures.last
           end
         end
       @options

@@ -4,8 +4,8 @@ module CMEGroup
     attr_accessor :future_line
 
     TYPES = [
-      { name: 'soybean oil', type: :soybean_oil },
-      { name: 'soybean meal', type: :soybean_meal },
+      { name: 'soybean oil', type: :soybean_oil, future_name: 'BO Soybean Oil Futures' },
+      { name: 'soybean meal', type: :soybean_meal, future_name: 'SM Soybean Meal Futures' },
       { name: 'soybeans option', type: :soybeans, future_name: 'S Soybean Futures' },
       { name: 'soybean option', type: :soybeans, future_name: 'S Soybean Futures' },
       { name: 'soybean crush', type: :soybean_crush, future_name: 'BCX SOYBEAN CRUSH' },
@@ -13,8 +13,8 @@ module CMEGroup
       { name: 'wheat option', type: :wheat, future_name: 'W Wheat Futures' },
     ]
 
-    def initialize(file, name, type)
-      @type = type
+    def initialize(file, name)
+      @type = name.downcase.include?('put') ? :put : :call
       super file, name
     end
 
