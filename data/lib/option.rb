@@ -16,6 +16,7 @@ module CMEGroup
       { name: 'wheat', type: :wheat, future_name: 'W Wheat Futures' },
       { name: 'wh ', type: :wheat, future_name: 'W Wheat Futures' },
       { name: 'cheese', type: :cheese, future_name: 'CSC Cash Settled Cheese Future' },
+      { name: 'dry milk', type: :dry_milk, future_name: 'NF CME NON-FAT DRY MILK FUTURES' },
       { name: 'milk', type: :milk, future_name: 'DA MILK FUTURES' },
       { name: 'feeder cattle', type: :feeder_cattle, future_name: 'FC CME FEEDER CATTLE FUTURES'},
       { name: 'palm oil', type: :palm_oil, future_name: 'FCP BMD Crude Palm Oil Future'},
