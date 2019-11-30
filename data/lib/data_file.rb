@@ -20,10 +20,6 @@ module CMEGroup
           .map {|x| "#{MONTHS[x.month-1]}#{x.year.to_s[2,2]}" }
     end
 
-    def tnote?
-      file_name.include?('T-Note')
-    end
-
     def commodity
       @fn_parts[1]&.gsub('_', '')&.downcase || 'ags_settlement'
     end
@@ -40,11 +36,12 @@ module CMEGroup
             # option line
             option = Option.new(self, line)
             future = @futures.find {|f| f.name == option.future_name}
-            if option.future_line = future.line_for(option.month)
+            if option.future_line = future&.line_for(option.month)
               @options << option
               current = @options.last
             else
-              current = nil
+              # no matching future => no recording
+              current = option
             end
           elsif line =~ DATALINE_REG
             # data line
