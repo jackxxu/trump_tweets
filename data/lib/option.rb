@@ -9,6 +9,7 @@ module CMEGroup
       { name: 'soybean meal', type: :soybean_meal, future_name: 'SM Soybean Meal Futures' },
       { name: 'soy bean meal', type: :soybean_meal, future_name: 'SM Soybean Meal Futures' },
       { name: 'soybean crush', type: :soybean_crush, future_name: 'BCX SOYBEAN CRUSH' },
+      { name: 'soy bean crush', type: :soybean_crush, future_name: 'BCX SOYBEAN CRUSH' },
       { name: 'soy bean', type: :soybeans, future_name: 'S Soybean Futures' },
       { name: 'soybean', type: :soybeans, future_name: 'S Soybean Futures' },
       { name: 'corn', type: :corn, future_name: 'C Corn Futures' },
