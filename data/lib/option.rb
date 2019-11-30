@@ -103,7 +103,7 @@ module CMEGroup
 
     def volatility
       lines
-        .sort_by {|x| (x.strike(future_line.settled) - future_line.settled).abs }
+        .sort_by {|x| (x.strike - future_line.settled).abs }
         .fetch(0)
         .volatility
     end

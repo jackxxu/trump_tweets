@@ -36,12 +36,11 @@ module CMEGroup
       actual_value(:vol, :prev_vol)
     end
 
-    def strike(underlying_price)
+    def strike
       price = value(:price).to_f.abs
       (0..4)
         .map  { |i| price/(10.0**i) }
-        .find { |p| (p/underlying_price).between?(0.3, 3) }
-        .tap  { |p| binding.pry if p.nil? }
+        .find { |p| (p/underlying_price).between?(0.3, 3) } || price
     end
 
     def dt
@@ -60,7 +59,7 @@ module CMEGroup
       risk_free_rate = TnoteRates.for(@block.file.dt.to_s)
       BlackScholes.option_implied_volatility(
         @block.type == :call,
-        @block.future_line.settled,
+        underlying_price,
         strike,
         @block.tnote_rate/100.0,
         @block.month_remaining*30/365.0,
@@ -71,6 +70,10 @@ module CMEGroup
     end
 
     private
+
+      def underlying_price
+        @block.future_line.settled
+      end
 
       def actual_value(main_field, unch_field)
         val = value(main_field)
