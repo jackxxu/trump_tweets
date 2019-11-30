@@ -36,8 +36,12 @@ module CMEGroup
       actual_value(:vol, :prev_vol)
     end
 
-    def strike
-      value(:price).to_f/10 # it seems that strike price is multipled by 10
+    def strike(underlying_price)
+      price = value(:price).to_f.abs
+      (0..4)
+        .map  { |i| price/(10.0**i) }
+        .find { |p| (p/underlying_price).between?(0.3, 3) }
+        .tap  { |p| binding.pry if p.nil? }
     end
 
     def dt
