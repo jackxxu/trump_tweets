@@ -4,7 +4,8 @@ module CMEGroup
     attr_accessor :future_line
 
     TYPES = [
-      { name: 'week', type: :weekly, future_name: '' }, # ignore weeklys
+      { name: 'soy bean', type: :soybeans, future_name: '' }, # ignore SOY BEAN, as it does produce a valid volatility score
+      { name: 'week', type: :weekly, future_name: '' }, # ignore weeklys, for volatility score instability
       { name: 'cso', type: :cso, future_name: '' }, # ignore all the CSOs (Calendar Spread)
       { name: 'calendar spread option', type: :cso, future_name: '' }, # ignore all the CSOs (Calendar Spread)
       { name: 'spred', type: :cso, future_name: '' }, # ignore all the CSOs (Calendar Spread)
@@ -14,7 +15,6 @@ module CMEGroup
       { name: 'soy bean meal', type: :soybean_meal, future_name: 'SM Soybean Meal Futures' },
       { name: 'soybean crush', type: :soybean_crush, future_name: 'BCX SOYBEAN CRUSH' },
       { name: 'soy bean crush', type: :soybean_crush, future_name: 'BCX SOYBEAN CRUSH' },
-      { name: 'soy bean', type: :soybeans, future_name: 'S Soybean Futures' },
       { name: 'soybean', type: :soybeans, future_name: 'S Soybean Futures' },
       { name: 'corn', type: :corn, future_name: 'C Corn Futures' },
       { name: 'eu milling wheat', type: :eu_miilling_wheat, future_name: 'WEU EU Milling Wheat Futures' },
