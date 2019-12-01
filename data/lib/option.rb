@@ -23,6 +23,7 @@ module CMEGroup
       { name: 'wheat', type: :wheat, future_name: 'W Wheat Futures' },
       { name: 'wh ', type: :wheat, future_name: 'W Wheat Futures' },
       { name: 'cheese', type: :cheese, future_name: 'CSC Cash Settled Cheese Future' },
+      { name: 'non-fat dry milk', type: :dry_milk, future_name: 'NF CME NON-FAT DRY MILK FUTURES' },
       { name: 'dry milk', type: :dry_milk, future_name: 'NF CME NON-FAT DRY MILK FUTURES' },
       { name: 'mid-size milk', type: :mid_size_milk, future_name: 'ZX Mid-size Milk Futures' },
       { name: 'class iv milk', type: :milk_iv, future_name: 'DK CME CLASS IV MILK FUTURES' },
