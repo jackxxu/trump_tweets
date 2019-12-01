@@ -48,7 +48,6 @@ module CMEGroup
             current << Line.new(line, current) if current
           else
             # future line, as it is the most unpredictable
-            puts line
             @futures << Future.new(self, line)
             current = @futures.last
           end

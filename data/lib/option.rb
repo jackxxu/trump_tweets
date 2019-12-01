@@ -69,6 +69,10 @@ module CMEGroup
       binding.pry
     end
 
+    def ticker
+      @name.split(' ')[0]
+    end
+
     def call
       (type == :call) ? 1 : 0
     end
