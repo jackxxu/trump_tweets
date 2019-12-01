@@ -69,6 +69,10 @@ module CMEGroup
       binding.pry
     end
 
+    def call
+      (type == :call) ? 1 : 0
+    end
+
     def commodity
       ln = name.downcase
       TYPES
