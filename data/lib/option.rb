@@ -4,8 +4,10 @@ module CMEGroup
     attr_accessor :future_line
 
     TYPES = [
+      { name: 'week', type: :weekly, future_name: '' }, # ignore weeklys
       { name: 'cso', type: :cso, future_name: '' }, # ignore all the CSOs (Calendar Spread)
       { name: 'calendar spread option', type: :cso, future_name: '' }, # ignore all the CSOs (Calendar Spread)
+      { name: 'spred', type: :cso, future_name: '' }, # ignore all the CSOs (Calendar Spread)
       { name: 'soy bean oil', type: :soybean_oil, future_name: 'BO Soybean Oil Futures' },
       { name: 'soybean oil', type: :soybean_oil, future_name: 'BO Soybean Oil Futures' },
       { name: 'soybean meal', type: :soybean_meal, future_name: 'SM Soybean Meal Futures' },
@@ -17,6 +19,7 @@ module CMEGroup
       { name: 'corn', type: :corn, future_name: 'C Corn Futures' },
       { name: 'eu milling wheat', type: :eu_miilling_wheat, future_name: 'WEU EU Milling Wheat Futures' },
       { name: 'hard red spring wheat', type: :hard_red_wheat, future_name: 'MWE Minneapolis Hard Red Spring Wheat Futures' },
+      { name: 'kansas city wheat', type: :kansas_wheat, future_name: 'KEF Kansas City Wheat Futures' },
       { name: 'wheat', type: :wheat, future_name: 'W Wheat Futures' },
       { name: 'wh ', type: :wheat, future_name: 'W Wheat Futures' },
       { name: 'cheese', type: :cheese, future_name: 'CSC Cash Settled Cheese Future' },
