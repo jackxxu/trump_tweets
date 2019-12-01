@@ -4,6 +4,7 @@ module CMEGroup
     attr_accessor :future_line
 
     TYPES = [
+      { name: 'black sea wheat financially settled', type: :bs_wheat, future_name: '' }, # ignore as no associated future
       { name: 'soy bean', type: :soybeans, future_name: '' }, # ignore SOY BEAN, as it does produce a valid volatility score
       { name: 'week', type: :weekly, future_name: '' }, # ignore weeklys, for volatility score instability
       { name: 'cso', type: :cso, future_name: '' }, # ignore all the CSOs (Calendar Spread)
@@ -89,6 +90,10 @@ module CMEGroup
 
     def dt
       @file.dt
+    end
+
+    def file_name
+      @file.file_name
     end
 
     def future_open_interest

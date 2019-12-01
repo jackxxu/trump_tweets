@@ -13,7 +13,7 @@ Dir["./lib/*.rb"].each {|file| require file }
 #   .sort
 #   .each { |x| puts x }
 
-OPTION_ATTRS = %i{dt commodity type name month_remaining volatility volume underlying_price line_open_interest future_open_interest tnote_rate}
+OPTION_ATTRS = %i{dt commodity type name file_name month_remaining volatility volume underlying_price line_open_interest future_open_interest tnote_rate}
 IGNORE_FN_PATTERNS = ['T-Note', '_int_settlements', 'Crude Oil', 'nymex_settlements']
 
 File.open('options.csv', 'w') do |output|
@@ -23,6 +23,7 @@ File.open('options.csv', 'w') do |output|
     .reject { |f| IGNORE_FN_PATTERNS.any? {|x| f.file_name.include?(x)} }
     .each { |f| puts "#{f.commodity}-#{f.dt}" }
     .flat_map(&:options)
+    .sort_by { |o| "#{o.dt}-#{o.commodity}-#{o.type}-#{o.month}" }
     .each do |option|
       output.puts OPTION_ATTRS.map {|key| option.send(key)}.join(',')
     end
