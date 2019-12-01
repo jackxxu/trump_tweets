@@ -4,6 +4,7 @@ module CMEGroup
     attr_accessor :future_line
 
     TYPES = [
+      { name: 'cso', type: :cso, future_name: '' }, # ignore all the CSOs (Calendar Spread)
       { name: 'soy bean oil', type: :soybean_oil, future_name: 'BO Soybean Oil Futures' },
       { name: 'soybean oil', type: :soybean_oil, future_name: 'BO Soybean Oil Futures' },
       { name: 'soybean meal', type: :soybean_meal, future_name: 'SM Soybean Meal Futures' },
@@ -13,10 +14,12 @@ module CMEGroup
       { name: 'soy bean', type: :soybeans, future_name: 'S Soybean Futures' },
       { name: 'soybean', type: :soybeans, future_name: 'S Soybean Futures' },
       { name: 'corn', type: :corn, future_name: 'C Corn Futures' },
+      { name: 'eu milling wheat', type: :eu_miilling_wheat, future_name: 'WEU EU Milling Wheat Futures' },
       { name: 'wheat', type: :wheat, future_name: 'W Wheat Futures' },
       { name: 'wh ', type: :wheat, future_name: 'W Wheat Futures' },
       { name: 'cheese', type: :cheese, future_name: 'CSC Cash Settled Cheese Future' },
       { name: 'dry milk', type: :dry_milk, future_name: 'NF CME NON-FAT DRY MILK FUTURES' },
+      { name: 'mid-size milk', type: :mid_size_milk, future_name: 'ZX Mid-size Milk Futures' },
       { name: 'milk', type: :milk, future_name: 'DA MILK FUTURES' },
       { name: 'feeder cattle', type: :feeder_cattle, future_name: 'FC CME FEEDER CATTLE FUTURES'},
       { name: 'palm oil', type: :palm_oil, future_name: 'FCP BMD Crude Palm Oil Future'},
